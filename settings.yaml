@@ -1,0 +1,40 @@
+# AWS 데이터 설정
+# 설정 방법 관측지점 명칭: 번호
+aws_std:
+  대흘: 330
+#  선흘: 751
+#  월정: 861
+
+#std_nm : ['제주공항', '제주', '고산', '성산', '대흘', '선흘', '구좌', '표선', '대정', '월정', '송당', '제주가시리']
+#std_in: [182, 184, 185, 188, 330, 751, 781, 792, 793, 861, 862, 890]
+
+# BADANURI
+badanuri_std:
+  상왕등도: 'TW_0079'
+
+asos_std:
+  제주: 184
+  성산: 188
+
+# ASOS
+
+
+# DATABASE ADDRESS
+mongodb: 'mongodb://localhost:27017'
+
+# DATABASE 설정
+asos_database: 'ASOS_DATA'
+aws_database: 'AWS_DATA'
+badanuri_database: 'BADANURI_DATA'
+
+
+#API KEY
+bada_api: *
+asos_api: *
+
+
+# logging
+logging:
+  asos: ./logs/asos.log
+  aws: ./logs/aws.log
+  badanuri: ./logs/badanuri.log
