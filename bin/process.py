@@ -37,9 +37,6 @@ def collector(log, config):
     std_type_enum = StdType[std_type_str.upper()]
     types_dict = config[f'{std_type_str}_std']
 
-    log.info(std_type_enum)
-    log.info(std_type_str)
-
     # 크롤링을 통한 데이터베이스 적재
     if std_type_enum == StdType.AWS:
         log.info('AWS 크롤링 시작')

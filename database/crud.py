@@ -33,18 +33,16 @@ def url_to_database(set_date, std_nm, std_in, config, log):
     insert_database(data, std_in, config, log)
 
 
-# 바다누리 데이터 수집 상위 코드
+# API 데이터 수집 상위 코드
 def api_to_database(set_date, std_nm, std_in, config, log):
     date = set_date - timedelta(days=1)
     date = date.strftime(API_DATEFORMAT)
 
     if config['std_type'] == StdType.BADANURI:
-        log.info('바다누리 수집 시작')
         api_key = config['bada_api']
         oc = OceanCollection(location_code=std_in, api_key=api_key, start_date=date, end_date=date)
         dataframe = oc.get_data()
     elif config['std_type'] == StdType.ASOS:
-        log.info('ASOS 수집 시작')
         api_key = config['asos_api']
         asos = ASOSCollector(location_code=std_in, api_key=api_key, start_date=date, end_date=date)
         dataframe = asos.get_data()
