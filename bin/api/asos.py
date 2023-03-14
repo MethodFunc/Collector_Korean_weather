@@ -48,10 +48,10 @@ class ASOSCollector:
     def get_contents(self):
         try:
             content = requests.get(self.asos_url, params=self.params).json()
-        except requests.exceptions.ConnectionError:
-            print('ASOS Connect Error')
-        except requests.exceptions.Timeout:
-            print('ASOS Timeout!')
+        except requests.exceptions.ConnectionError as e:
+            print(f'ASOS Connect Error: {e}')
+        except requests.exceptions.Timeout as e:
+            print(f'ASOS Timeout!: {e}')
 
         return content
 

@@ -35,9 +35,14 @@ class OceanCollection:
         self.data['WAVE_HEIGHT'] = {}
 
     def get_contents(self, url):
-        response = requests.get(url, params=self.params).json()
+        try:
+            content = requests.get(url, params=self.params).json()
+        except requests.exceptions.ConnectionError as e:
+            print(f'BADANURI Connect Error: {e}')
+        except requests.exceptions.Timeout as e:
+            print(f'BADANURI Timeout!: {e}')
 
-        return response
+        return content
 
     def get_content_value(self, content, id_name):
         ids = {
