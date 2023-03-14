@@ -12,11 +12,10 @@ aws_std:
 badanuri_std:
   상왕등도: 'TW_0079'
 
+# ASOS
 asos_std:
   제주: 184
   성산: 188
-
-# ASOS
 
 
 # DATABASE ADDRESS
