@@ -7,6 +7,7 @@ import pytz
 import requests
 
 
+DATEFORMAT = '%Y%m%d'
 def convert_date(date):
     try:
         record_date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
@@ -27,11 +28,11 @@ class OceanCollection:
         self.start_date = start_date
         self.end_date = end_date
         self.data = OrderedDict()
-        self.data['wind_speed'] = {}
-        self.data['wind_direction'] = {}
-        self.data['temp'] = {}
-        self.data['hpa'] = {}
-        self.data['wave_height'] = {}
+        self.data['WIND_SPEED'] = {}
+        self.data['WIND_DIRECTION'] = {}
+        self.data['TEMP'] = {}
+        self.data['HPA'] = {}
+        self.data['WAVE_HEIGHT'] = {}
 
     def get_contents(self, url):
         response = requests.get(url, params=self.params).json()
@@ -40,10 +41,10 @@ class OceanCollection:
 
     def get_content_value(self, content, id_name):
         ids = {
-            'wind': {'wind_speed': 'wind_speed', 'wind_direction': 'wind_dir'},
-            'air': {'temp': 'air_temp'},
-            'pres': {'hpa': 'air_pres'},
-            'wh': {'wave_height': 'wave_height'}
+            'wind': {'WIND_SPEED': 'wind_speed', 'WIND_DIRECTION': 'wind_dir'},
+            'air': {'TEMP': 'air_temp'},
+            'pres': {'HPA': 'air_pres'},
+            'wh': {'WAVE_HEIGHT': 'wave_height'}
         }
         get_columns = ids.get(id_name)
 
@@ -61,10 +62,10 @@ class OceanCollection:
         air_url = r'http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?'
         pres_url = r'http://www.khoa.go.kr/api/oceangrid/tidalBuAirPres/search.do?'
         wh_url = r'http://www.khoa.go.kr/api/oceangrid/obsWaveHight/search.do?'
-        date_ = datetime.datetime.strptime(self.start_date, "%Y%m%d")
+        date_ = datetime.datetime.strptime(self.start_date, DATEFORMAT)
 
         while True:
-            date = date_.strftime("%Y%m%d")
+            date = date_.strftime(DATEFORMAT)
             self.params.update(Date=date)
 
             date_ = date_ + datetime.timedelta(days=1)
@@ -94,14 +95,3 @@ class OceanCollection:
         dataframe['DATETIME'] = dataframe['DATETIME'].apply(lambda x: x.tz_localize('Asia/Seoul').tz_convert(pytz.utc))
 
         return dataframe
-
-
-if __name__ == '__main__':
-    oc = OceanCollection()
-    result = oc.total_data(2020, 1, 1, '20200102')
-    import pandas as pd
-
-    df = pd.DataFrame(result)
-    print(df.shape)
-    print(df.isna().sum())
-    print(df)
