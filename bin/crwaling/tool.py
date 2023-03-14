@@ -1,22 +1,22 @@
 def kr_en_convert(content):
     tables_dict = {
         '시:분': 'DATETIME',
-        '강수': 'rain',
-        '강수15': 'rain15',
-        '강수60': 'rain60',
-        '강수3H': 'rain3h',
-        '강수6H': 'rain6h',
-        '강수12H': 'rain12h',
-        '일강수': 'rain1d',
-        '기온': 'temp',
-        '풍향1': 'wd1',
-        '풍향1_D': 'wd1s',
-        '풍속1(m/s)': 'ws1',
-        '풍향10': 'wd10',
-        '풍향10_D': 'wd10s',
-        '풍속10(m/s)': 'ws10',
-        '습도': 'hum',
-        '해면기압': 'hpa'
+        '강수': 'RAIN',
+        '강수15': 'RAIN_15M',
+        '강수60': 'RAIN_60M',
+        '강수3H': 'RAIN_3H',
+        '강수6H': 'RAIN_6H',
+        '강수12H': 'RAIN_12H',
+        '일강수': 'RAIN_1D',
+        '기온': 'TEMP',
+        '풍향1': 'WIND_DIRECTION_1M',
+        '풍향1_D': 'WIND_DIRECTION_1M_STRING',
+        '풍속1(m/s)': 'WIND_SPEED_1M',
+        '풍향10': 'WIND_DIRECTION_10M',
+        '풍향10_D': 'WIND_DIRECTION_10M_STRING',
+        '풍속10(m/s)': 'WIND_SPEED_10M',
+        '습도': 'HUM',
+        '해면기압': 'HPA'
     }
     col_list = []
     for col in content:
@@ -30,8 +30,9 @@ def kr_en_convert(content):
 
 def columns_type(col):
     tables_types = {
-        'DATETIME': str, 'rain': str, 'rain15': float, 'rain60': float, 'rain3h': float, 'rain6h': float,
-        'rain12h': float, 'rain1d': float, 'temp': float, 'wd1': float, 'wd1s': str, 'ws1': float, 'wd10': float,
-        'wd10s': str, 'ws10': float, 'hum': float, 'hpa': float}
+        'DATETIME': str, 'RAIN': str, 'RAIN_15M': float, 'RAIN_60M': float, 'RAIN_3H': float, 'RAIN_6H': float,
+        'RAIN_12H': float, 'RAI_N1D': float, 'TEMP': float, 'WIND_DIRECTION_1M': float, 'WIND_DIRECTION_1M_STRING': str,
+        'WIND_SPEED_1M': float, 'WIND_DIRECTION_10M': float, 'WIND_DIRECTION_10Ms': str, 'WIND_SPEED_10M': float,
+        'HUM': float, 'HPA': float}
 
     return tables_types.get(col)
