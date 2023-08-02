@@ -6,8 +6,9 @@ import pandas as pd
 import pytz
 import requests
 
-
 DATEFORMAT = '%Y%m%d'
+
+
 def convert_date(date):
     try:
         record_date = datetime.datetime.strptime(date, "%Y-%m-%d %H:%M:%S")

@@ -4,7 +4,8 @@ from functools import partial
 
 from joblib import Parallel, delayed
 
-from database.crud import url_to_database, api_to_database
+from database.mongo.crud import api_to_database
+from database.postgresql.crud import aws_to_psql
 
 
 class StdType(str, Enum):
@@ -40,7 +41,7 @@ def collector(log, config):
     # 크롤링을 통한 데이터베이스 적재
     if std_type_enum == StdType.AWS:
         log.info('AWS 크롤링 시작')
-        active_func = partial(url_to_database, set_date=set_date, config=config, log=log)
+        active_func = partial(aws_to_psql, set_date=set_date, config=config, log=log)
 
     # API로 이용한 데이터베이스 적재
     elif std_type_enum == StdType.BADANURI or std_type_enum == StdType.ASOS:

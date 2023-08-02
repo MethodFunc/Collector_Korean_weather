@@ -524,3 +524,5 @@ cython_debug/
 info.log*
 
 logs/
+settings.yaml
+test.py

@@ -2,6 +2,7 @@ import pymongo.errors
 from pymongo import MongoClient, UpdateOne
 
 
+
 class MongoConnect:
     """
         범용 mongodb context manager
@@ -37,3 +38,5 @@ class MongoConnect:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
+
+

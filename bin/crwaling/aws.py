@@ -33,11 +33,11 @@ def aws_exec(url, set_date: datetime):
         current_date = set_date.strftime(DATAFORMAT)
         prev_date = (set_date - timedelta(days=1)).strftime(DATAFORMAT)
         for data, col in zip(table_in_data, convert_table_columns):
-            if col == 'datetime':
+            if col == 'DATETIME':
                 data = current_date + ' ' + data if data == '00:00' or set_date.hour != 0 else prev_date + ' ' + data
                 local_time = kst.localize(datetime.strptime(data, '%Y%m%d %H:%M'))
                 value = local_time.astimezone(pytz.utc)
-            elif col in ['rain', 'wd1s', 'wd10s']:
+            elif col in ['RAIN', 'WIND_DIRECTION_1M_STRING', 'WIND_DIRECTION_10M_STRING']:
                 continue
             else:
                 value = value_nan.get(data, data)

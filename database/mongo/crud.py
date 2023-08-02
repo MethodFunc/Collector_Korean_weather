@@ -4,6 +4,7 @@ from .connection import MongoConnect
 from bin.crwaling.aws import aws_exec
 from bin.api.badanuri import OceanCollection
 from bin.api.asos import ASOSCollector
+from database.postgresql.connection import _create_engine
 
 AWS_DATEFORMAT = '%Y%m%d%H%M'
 API_DATEFORMAT = '%Y%m%d'
@@ -53,4 +54,3 @@ def api_to_database(set_date, std_nm, std_in, config, log):
 
     data = dataframe.to_dict('records')
     insert_database(data, std_in, config, log)
-

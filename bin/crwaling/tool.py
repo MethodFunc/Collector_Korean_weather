@@ -31,8 +31,8 @@ def kr_en_convert(content):
 def columns_type(col):
     tables_types = {
         'DATETIME': str, 'RAIN': str, 'RAIN_15M': float, 'RAIN_60M': float, 'RAIN_3H': float, 'RAIN_6H': float,
-        'RAIN_12H': float, 'RAI_N1D': float, 'TEMP': float, 'WIND_DIRECTION_1M': float, 'WIND_DIRECTION_1M_STRING': str,
-        'WIND_SPEED_1M': float, 'WIND_DIRECTION_10M': float, 'WIND_DIRECTION_10Ms': str, 'WIND_SPEED_10M': float,
+        'RAIN_12H': float, 'RAIN_1D': float, 'TEMP': float, 'WIND_DIRECTION_1M': float, 'WIND_DIRECTION_1M_STRING': str,
+        'WIND_SPEED_1M': float, 'WIND_DIRECTION_10M': float, 'WIND_DIRECTION_10M_STRING': str, 'WIND_SPEED_10M': float,
         'HUM': float, 'HPA': float}
 
     return tables_types.get(col)
